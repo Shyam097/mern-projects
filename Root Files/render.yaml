@@ -1,0 +1,34 @@
+# render.yaml
+# ─────────────────────────────────────────────────────────────
+# PURPOSE: Tell Render.com how to deploy our backend
+#
+# WHAT IS RENDER?
+#  Render is a cloud platform (like a remote computer in the sky).
+#  You push your code to GitHub, connect it to Render,
+#  and Render runs your Node.js server 24/7 on the internet.
+#  Anyone can then reach your API at: https://your-app.onrender.com
+#
+# HOW DEPLOYMENT WORKS:
+#  1. You push code to GitHub
+#  2. Render detects the push
+#  3. Render runs "npm install" then "npm start"
+#  4. Your server is live on the internet!
+# ─────────────────────────────────────────────────────────────
+
+services:
+  - type: web              # A web server (not a cron job or worker)
+    name: expense-tracker-api
+    env: node              # Runtime: Node.js
+    rootDir: backend       # All commands run from the /backend folder
+    buildCommand: npm install         # Install dependencies
+    startCommand: npm start           # Run server.js
+
+    # Environment variables — set these in Render's dashboard
+    # DO NOT put real secrets here — this file is in Git!
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false          # "sync: false" means you must set this manually in Render
+      - key: FRONTEND_URL
+        sync: false          # Set to your Vercel frontend URL

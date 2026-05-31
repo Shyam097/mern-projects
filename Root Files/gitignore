@@ -1,0 +1,20 @@
+# Dependencies (auto-installed, never commit these — they're huge)
+node_modules/
+
+# Environment variables (contains secrets — NEVER commit)
+.env
+.env.local
+.env.production
+
+# Build output (generated files)
+dist/
+build/
+
+# Editor files
+.vscode/
+.idea/
+*.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
